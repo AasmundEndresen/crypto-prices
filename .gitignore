@@ -17,6 +17,11 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.eslintcache
+blacklist.txt
+whitelist.txt
+test.js
+fetchCoins.js
 
 npm-debug.log*
 yarn-debug.log*
