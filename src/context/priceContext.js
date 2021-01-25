@@ -16,7 +16,7 @@ const PriceProvider = ({ children }) => {
   useEffect(() => {
     async function getData() {
       const newData = await getCoinData('bitcoin');
-      const selectedData = await getMarketData();
+      const selectedData = await getMarketData(JSON.parse(localStorage.getItem('selection')));
       const trendingCoins = await getTrendingCoins();
       const trendingData = await getMarketData(trendingCoins.map(({ id }) => id));
       setBtc(newData.find(({ id }) => id === 'bitcoin'));

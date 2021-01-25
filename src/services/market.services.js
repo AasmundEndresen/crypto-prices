@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { api, ids } from '../config/marketService.config';
 
-export const getMarketData = async function (config = ids) {
+export const getMarketData = async function (selection) {
+  const config = selection ?? ids.split(',');
   try {
     const options = `vs_currency=usd&ids=${config}&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
     const response = await axios.get(`${api}/coins/markets?${options}`);

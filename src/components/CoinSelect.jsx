@@ -97,6 +97,7 @@ function CoinSelect({ priceContext }) {
     const newState = [...selected, ...newCoin].sort((a, b) => b.market_cap - a.market_cap);
     setSuggestions([]);
     setSelected(newState);
+    localStorage.setItem('selection', JSON.stringify(newState.map(({ id }) => id)));
   }
 
   return (

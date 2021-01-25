@@ -16,7 +16,7 @@ function MainTable({ priceContext }) {
     <StyledContainer>
       <CoinCard el={btc} btc={btc} />
       {selected.map((el, i) => (
-        <CoinCard key={i} el={el} btc={btc} />
+        <CoinCard key={i} el={el} btc={btc} selection={true} />
       ))}
     </StyledContainer>
   )
