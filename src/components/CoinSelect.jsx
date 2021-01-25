@@ -27,6 +27,7 @@ const SuggestionList = styled.div`
 
 const StyledContainer = styled.div`
   position: relative;
+  margin-right: 12px;
   input {
       padding: 0px 8px;
       height: 32px;

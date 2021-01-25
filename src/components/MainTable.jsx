@@ -7,7 +7,10 @@ import CoinCard from './CoinCard';
 const StyledContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  margin: auto;
+  padding: 12px;
+  justify-content: center;
+  max-width: 968px;
 `;
 
 function MainTable({ priceContext }) {

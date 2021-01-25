@@ -4,16 +4,23 @@ import PropTypes from 'prop-types'
 import { withPrice } from '../context/priceContext'
 
 const StyledContainer = styled.div`
-    position: relative;
+  position: relative;
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   width: 280px;
   height: 150px;
   background-color: whitesmoke;
   border-radius: 8px;
-  padding: 8px;
+  margin: 12px;
+  padding: 12px;
   margin-bottom: 16px;
   overflow: hidden;
+  box-shadow:
+    2px 2px 9px 2px rgba(0,0,0,0.25),
+    1px 1px 2px 1px inset rgba(0,0,0,0.25),
+    -2px -2px 9px 2px rgba(255,255,255,0.75),
+    -1px -1px 2px 1px inset rgba(255,255,255,0.75);
   h1 {
     font-size: 20px;
     padding: 0;
@@ -36,14 +43,22 @@ const StyledContainer = styled.div`
     font-size: 14px;
     color: gray;
   }
-  .current {
+  .increment {
+    padding: 0;
+    margin: 0;
+  }
+  .current, .increment {
     font-size: 12px;
     color: gray;
+    line-height: 1.2;
   }
   .btcmcap, .amount span {
     font-weight: bold;
   }
   .btcmcap {
+    margin: 0;
+    padding: 0;
+    line-height: 2;
     color: green
   }
   .data {
@@ -84,9 +99,10 @@ function CoinCard({ el, btc, priceContext, selection }) {
       <div className="data">
         <h1>{el.name}</h1>
         <span className="current">{formatNum(el.current_price)}</span>
+        <p className="increment">w/{(getPriceAtBTCmcap(el) / el.current_price).toFixed(1)}x</p>
         <p className="btcmcap">{formatNum(getPriceAtBTCmcap(el))}</p>
       </div>
-      <p className="amount">You would need <span>{formatNum(get1MamtAtBTCmcap(el))} {el.symbol.toUpperCase()}</span> for $1M at that price, which is <span className="price">{formatNum(get1MamtAtBTCmcap(el) * el.current_price)}.</span> today</p>
+      <p className="amount">You would need <span>{formatNum(get1MamtAtBTCmcap(el))} {el.symbol.toUpperCase()}</span> for $1M at that price, which is <span className="price">{formatNum(get1MamtAtBTCmcap(el) * el.current_price)}</span> at todays price</p>
       <img src={el.image} alt={`Logo for ${el.name}`} />
     </StyledContainer>
   )

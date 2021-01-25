@@ -16,8 +16,10 @@ function App({ className }) {
     <PriceProvider>
       <header className={className} component={component}>
         <nav className="nav">
-          <button className={`nav-btn is-${active}`} onClick={() => handleClick('trending')}>Trending</button>
-          <button className={`nav-btn is-${active}`} onClick={() => handleClick('selected')}>Selected</button>
+          <div className="links">
+            <button className={`nav-btn is-${active}`} onClick={() => handleClick('trending')}>Trending</button>
+            <button className={`nav-btn is-${active}`} onClick={() => handleClick('selected')}>Selected</button>
+          </div>
           <div className="addcoin">
             <CoinSelect />
           </div>
@@ -29,24 +31,33 @@ function App({ className }) {
 }
 
 export default styled(App)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   .nav {
     box-sizing: border-box;
     width: 100%;
-    padding: 24px;
+    max-width: 968px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 12px 32px;
     align-items: center;
+    margin-bottom: 24px;
+    @media (max-width: 420px) {
+      justify-content: center;
+    }
     &-btn {
       box-sizing: padding-box;
       cursor: pointer;
       border: none;
       outline: none;
-      font-size: 20px;
-      width: 200px;
+      font-size: 16px;
+      width: 100px;
       height: 50px;
-      background-color: white;
+      background-color: transparent;
       color: steelblue;
+      mix-blend-mode: difference;
       font-weight: bold;
       &:hover {
         text-decoration: underline;
