@@ -34,6 +34,7 @@ export default styled(App)`
     width: 100%;
     padding: 24px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     &-btn {
