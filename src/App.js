@@ -28,7 +28,7 @@ function App({ className }) {
           </div>
         </nav>
         <div class="donations">
-          <h2>Addresses for donations</h2>
+          <h2>Donations</h2>
           <div>
             <span className="asset">BTC</span>
             <Btc className="qr" />
