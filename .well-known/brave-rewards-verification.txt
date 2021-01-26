@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: ifxflippedbitcoin.com
+Token: 22515a393dd22b91da45d0339b86cb032e4bf44a79876709b78dc7d2b89a5700
