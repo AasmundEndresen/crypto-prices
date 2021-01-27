@@ -1,6 +1,7 @@
 import MainTable from './components/MainTable'
 import TrendingTable from './components/TrendingTable'
 import Layout from './components/Layout'
+import Home from './components/HomeScreen'
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,6 +22,7 @@ const App = props => {
           <Route path="/:coin">
           </Route>
           <Route path="/">
+            <Home />
           </Route>
         </Switch>
       </Layout>
