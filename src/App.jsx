@@ -3,11 +3,45 @@ import styled from 'styled-components'
 import { PriceProvider } from './context/priceContext'
 import MainTable from './components/MainTable'
 import TrendingTable from './components/TrendingTable'
-import CoinSelect from './components/CoinSelect'
+import Layout from './components/Layout'
 import { ReactComponent as Btc } from './components/btc.svg'
 import { ReactComponent as Xlm } from './components/btc.svg'
 import { ReactComponent as Eth } from './components/btc.svg'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom"
+// <header className={className} component={component}>
+//   <nav className="nav">
+//     <div className="links">
+//       <button className={`nav-btn is-${active}`} onClick={() => handleClick('trending')}>Trending</button>
+//       <button className={`nav-btn is-${active}`} onClick={() => handleClick('selected')}>Selected</button>
+//     </div>
+//     <div className="addcoin">
+//       <CoinSelect />
+//     </div>
+//   </nav>
+//   <div class="donations">
+//     <h2>Donations</h2>
+//     <div>
+//       <span className="asset">BTC</span>
+//       <Btc className="qr" />
+//     </div>
+//     <div>
+//       <span className="asset">ETH/ERC20</span>
+//       <Eth className="qr" />
+//     </div>
+//     <div>
+//       <span className="asset">XLM</span>
+//       <Xlm className="qr" />
+//     </div>
+//   </div>
+// </header>
+// {component}
+//   <PriceProvider>
 
+// </PriceProvider>
 function App({ className }) {
   const [component, setComponent] = useState(MainTable);
   const [active, setActive] = useState('selected');
@@ -16,35 +50,21 @@ function App({ className }) {
     setComponent(type === 'trending' ? TrendingTable : MainTable);
   };
   return (
-    <PriceProvider>
-      <header className={className} component={component}>
-        <nav className="nav">
-          <div className="links">
-            <button className={`nav-btn is-${active}`} onClick={() => handleClick('trending')}>Trending</button>
-            <button className={`nav-btn is-${active}`} onClick={() => handleClick('selected')}>Selected</button>
-          </div>
-          <div className="addcoin">
-            <CoinSelect />
-          </div>
-        </nav>
-        <div class="donations">
-          <h2>Donations</h2>
-          <div>
-            <span className="asset">BTC</span>
-            <Btc className="qr" />
-          </div>
-          <div>
-            <span className="asset">ETH/ERC20</span>
-            <Eth className="qr" />
-          </div>
-          <div>
-            <span className="asset">XLM</span>
-            <Xlm className="qr" />
-          </div>
-        </div>
-      </header>
-      {component}
-    </PriceProvider>
+    <Router>
+      <Layout>
+      </Layout>
+      <Switch>
+        <Route path="/trending">
+        </Route>
+        <Route path="/selected">
+        </Route>
+        <Route path="/:coin">
+        </Route>
+        <Route path="/">
+        </Route>
+      </Switch>
+
+    </Router>
   );
 }
 
