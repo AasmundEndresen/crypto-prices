@@ -1,13 +1,15 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import { PriceProvider } from '../../context/priceContext'
 import PropTypes from 'prop-types'
+import Header from './Header';
 
 const Layout = props => {
   return (
-    <Fragment>
-      <header></header>
-      <main>{this.props.children}</main>
+    <PriceProvider>
+      <Header></Header>
+      <main>{props.children}</main>
       <footer></footer>
-    </Fragment>
+    </PriceProvider>
   )
 }
 
