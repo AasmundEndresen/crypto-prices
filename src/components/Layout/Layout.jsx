@@ -1,6 +1,5 @@
 import React from 'react'
 import { PriceProvider } from '../../context/priceContext'
-import PropTypes from 'prop-types'
 import Header from './Header';
 
 const Layout = props => {
@@ -11,10 +10,6 @@ const Layout = props => {
       <footer></footer>
     </PriceProvider>
   )
-}
-
-Layout.propTypes = {
-
 }
 
 export default Layout

@@ -7,8 +7,9 @@ import { StyledContainer } from './CoinCard.components'
 
 const numberFormat = /\B(?=(\d{3})+(?!\d))/g;
 
-function CoinCard({ el, btc, priceContext, selection }) {
+const CoinCard = ({ el, btc, priceContext, selection }) => {
   const { selected, setSelected } = priceContext;
+  const history = useHistory();
   const getPriceAtBTCmcap = (el) => btc.market_cap / el.market_cap * el.current_price;
   const get1MamtAtBTCmcap = (el) => 1_000_000 / getPriceAtBTCmcap(el);
   const formatNum = (num) => num.toFixed(2).toString().replace(numberFormat, ",");
@@ -20,8 +21,7 @@ function CoinCard({ el, btc, priceContext, selection }) {
   };
   const handleNavigation = (e) => {
     e.stopPropagation();
-    // const history = useHistory();
-    // history.push(`/${el.name}`);
+    history.push(`/${el.id}`);
   };
   return (
     <StyledContainer onClick={handleNavigation}>
