@@ -1,27 +1,20 @@
-import { useState } from 'react'
 import styled from 'styled-components'
+import { Switch, Route, NavLink } from 'react-router-dom'
+import routes from './app.routes'
 import { PriceProvider } from './context/priceContext'
-import MainTable from './components/MainTable'
-import TrendingTable from './components/TrendingTable'
 import CoinSelect from './components/CoinSelect'
 import { ReactComponent as Btc } from './components/btc.svg'
 import { ReactComponent as Xlm } from './components/btc.svg'
 import { ReactComponent as Eth } from './components/btc.svg'
 
 function App({ className }) {
-  const [component, setComponent] = useState(MainTable);
-  const [active, setActive] = useState('selected');
-  const handleClick = function (type) {
-    setActive(type);
-    setComponent(type === 'trending' ? TrendingTable : MainTable);
-  };
   return (
     <PriceProvider>
-      <header className={className} component={component}>
+      <header className={className}>
         <nav className="nav">
           <div className="links">
-            <button className={`nav-btn is-${active}`} onClick={() => handleClick('trending')}>Trending</button>
-            <button className={`nav-btn is-${active}`} onClick={() => handleClick('selected')}>Selected</button>
+            <NavLink to="/trending">Trending</NavLink>
+            <NavLink to="/selected">Selected</NavLink>
           </div>
           <div className="addcoin">
             <CoinSelect />
@@ -43,7 +36,9 @@ function App({ className }) {
           </div>
         </div>
       </header>
-      {component}
+      <Switch>
+        {routes.map(r => (<Route path={r.path} component={r.component} />))}
+      </Switch>
     </PriceProvider>
   );
 }
@@ -99,7 +94,7 @@ export default styled(App)`
     @media (max-width: 420px) {
       justify-content: center;
     }
-    &-btn {
+    a {
       box-sizing: padding-box;
       cursor: pointer;
       border: none;
