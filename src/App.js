@@ -5,8 +5,8 @@ import MainTable from './components/MainTable'
 import TrendingTable from './components/TrendingTable'
 import CoinSelect from './components/CoinSelect'
 import { ReactComponent as Btc } from './components/btc.svg'
-import { ReactComponent as Xlm } from './components/btc.svg'
-import { ReactComponent as Eth } from './components/btc.svg'
+import { ReactComponent as Xlm } from './components/xlm.svg'
+import { ReactComponent as Eth } from './components/eth.svg'
 
 function App({ className }) {
   const [component, setComponent] = useState(MainTable);
