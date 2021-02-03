@@ -1,10 +1,7 @@
-import {
-  MainTable,
-  TrendingTable
-} from './components';
+import { TrendingTable, SelectedTable } from './components';
 
 const appRoutes = [
-  { path: '/selected', component: MainTable },
+  { path: '/selected', component: SelectedTable },
   { path: '/trending', component: TrendingTable },
 ];
 

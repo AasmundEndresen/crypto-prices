@@ -1,26 +1,21 @@
 import styled from 'styled-components'
 import { Switch, Route, NavLink } from 'react-router-dom'
 import routes from './app.routes'
-import { PriceProvider } from './context/priceContext'
-import CoinSelect from './components/CoinSelect'
-import { ReactComponent as Btc } from './components/btc.svg'
-import { ReactComponent as Xlm } from './components/xlm.svg'
-import { ReactComponent as Eth } from './components/eth.svg'
+import { ReactComponent as Btc } from './assets/btc.svg'
+import { ReactComponent as Xlm } from './assets/xlm.svg'
+import { ReactComponent as Eth } from './assets/eth.svg'
 
 function App({ className }) {
   return (
-    <PriceProvider>
-      <header className={className}>
+    <div className={className}>
+      <header>
         <nav className="nav">
           <div className="links">
             <NavLink to="/trending">Trending</NavLink>
             <NavLink to="/selected">Selected</NavLink>
           </div>
-          <div className="addcoin">
-            <CoinSelect />
-          </div>
         </nav>
-        <div class="donations">
+        <div className="donations">
           <h2>Donations</h2>
           <div>
             <span className="asset">BTC</span>
@@ -37,9 +32,9 @@ function App({ className }) {
         </div>
       </header>
       <Switch>
-        {routes.map(r => (<Route path={r.path} component={r.component} />))}
+        {routes.map((r, i) => (<Route path={r.path} component={r.component} key={i} />))}
       </Switch>
-    </PriceProvider>
+    </div>
   );
 }
 
