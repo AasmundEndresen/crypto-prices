@@ -8,7 +8,6 @@ import CoinCard from './CoinCard';
 const AssetTable = ({ ids, className }) => {
   const asset = useSelector(getAssetForCompare);
   const selected = useSelector(state => getAssetsByIds(state, ids));
-  console.log(selected);
   return (
     <div className={className}>
       <CoinCard el={asset} compare={asset} />
