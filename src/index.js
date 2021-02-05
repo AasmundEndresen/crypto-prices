@@ -11,9 +11,11 @@ import { ids } from './config/marketService.config';
 
 const store = configureStore();
 
+const selected = localStorage.getItem('ids') ?? ids;
+
 store.dispatch(fetchAssetList());
 store.dispatch(fetchTrendingAssets());
-store.dispatch(fetchSelectedAssets(ids));
+store.dispatch(fetchSelectedAssets(selected));
 
 const renderApp = () => render(
   <React.StrictMode>

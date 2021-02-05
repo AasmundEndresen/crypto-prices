@@ -55,6 +55,29 @@ export const assetSlice = createSlice({
       ...state,
       currency: action.payload,
     }),
+    addToSelected: (state, action) => {
+      const old = state.selected.data;
+      const newData = [...old, action.payload];
+      localStorage.setItem('ids', newData.map(({ id }) => id).join(','));
+      return {
+        ...state,
+        selected: {
+          ...state.selected,
+          data: newData,
+        },
+      }
+    },
+    removeFromSelected: (state, action) => {
+      const newData = state.selected.data.filter(({ id }) => id !== action.payload);
+      localStorage.setItem('ids', newData.map(({ id }) => id));
+      return {
+        ...state,
+        selected: {
+          ...state.selected,
+          data: newData,
+        },
+      }
+    },
   },
   extraReducers: {
     [fetchSelectedAssets.pending]: (state) => { state.selected.status = 'loading' },
@@ -118,10 +141,10 @@ export const assetSlice = createSlice({
   }
 })
 
-export const { setAssetForCompare, setCurrency } = assetSlice.actions;
+export const { setAssetForCompare, setCurrency, removeFromSelected, addToSelected } = assetSlice.actions;
 
 export const getAssetById = (state, id) => state.asset.assets.data.find(a => a.id === id);
-export const getAssetsByIds = (state, ids) => state.asset.assets.data.filter(a => ids.some(id => id === a.id));
+export const getAssetsByIds = (state, ids, sortingFunction = (a, b) => a - b) => state.asset.assets.data.filter(a => ids.some(id => id === a.id)).sort(sortingFunction);
 export const getAssetForCompare = (state) => state.asset.assets.data.find(({ id }) => id === state.asset.compare);
 export const getAllAssets = (state) => state.asset.all;
 export const getCurrency = (state) => state.asset.currency;

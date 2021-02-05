@@ -2,7 +2,7 @@ import React, { forwardRef, useState } from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
-import { getAllAssets, getLoaded, fetchSelectedAssets } from '../features/assets/asset.slice';
+import { getAllAssets, getSelected, fetchSelectedAssets, addToSelected } from '../features/assets/asset.slice';
 
 
 const applyWeight = (assets, value) => {
@@ -87,7 +87,7 @@ const CoinSelect = ({ className }, ref) => {
   const [suggestions, setSuggestions] = useState([]);
   const dispatch = useDispatch();
   const assets = useSelector(getAllAssets);
-  const loadedAssets = useSelector(getLoaded);
+  const loadedAssets = useSelector(getSelected).data;
   const notLoaded = assets.data.filter(({ id }) => !loadedAssets.some(a => a.id === id));
 
   const handleInput = e => {
@@ -105,7 +105,9 @@ const CoinSelect = ({ className }, ref) => {
   }
 
   const handleSelect = asset => {
-    dispatch(fetchSelectedAssets(asset.id));
+    const { id, name, symbol } = asset;
+    dispatch(fetchSelectedAssets(id));
+    dispatch(addToSelected({ id, name, symbol }));
     setVisible(false);
   }
 

@@ -5,11 +5,11 @@ import AssetTable from './AssetTable'
 
 const TrendingTable = props => {
   const selected = useSelector(getSelected);
-  const ids = selected.data.map(({ id }) => id);
+  const assets = selected.data.map(a => ({ ...a, removeable: true }));
   return (
     <div>
       {(selected.status === 'succeeded') && (
-        <AssetTable ids={ids} />
+        <AssetTable assets={assets} />
       )}
     </div>
   )

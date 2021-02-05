@@ -5,9 +5,13 @@ import PropTypes from 'prop-types'
 import { getAssetsByIds, getAssetForCompare } from '../features/assets/asset.slice'
 import CoinCard from './CoinCard';
 
-const AssetTable = ({ ids, className }) => {
+const AssetTable = ({ assets, className }) => {
   const asset = useSelector(getAssetForCompare);
-  const selected = useSelector(state => getAssetsByIds(state, ids));
+  const ids = assets.map(({ id }) => id);
+  const selected = useSelector(state => getAssetsByIds(state, ids, (a, b) => b.market_cap - a.market_cap)).filter(({ id }) => id !== asset.id).map(a => ({
+    ...a,
+    ...assets.find(({ id }) => id === a.id),
+  }));
   return (
     <div className={className}>
       <CoinCard el={asset} compare={asset} />
@@ -17,7 +21,7 @@ const AssetTable = ({ ids, className }) => {
 }
 
 AssetTable.propTypes = {
-  ids: PropTypes.array.isRequired,
+  assets: PropTypes.array.isRequired,
 }
 
 export default styled(AssetTable)`
