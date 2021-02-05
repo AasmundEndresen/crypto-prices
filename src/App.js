@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { Switch, Route } from 'react-router-dom'
 import routes from './app.routes'
-import { Navigation } from './components'
-import Donations from './components/Donations'
+import { Navigation, Donations } from './components'
 
 function App({ className }) {
   return (
