@@ -11,3 +11,13 @@ export const getAssetData = async function (id) {
     console.log(err);
   }
 }
+
+export const getAssetList = async function () {
+  try {
+    const options = `list`;
+    const response = await axios.get(`${api}/coins/${options}`);
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
+}

@@ -6,21 +6,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import configureStore from './configureStore';
-import { fetchTrendingAssets, fetchSelectedAssets } from './features/assets/asset.slice';
+import { fetchTrendingAssets, fetchSelectedAssets, fetchAssetList } from './features/assets/asset.slice';
 import { ids } from './config/marketService.config';
 
 const store = configureStore();
 
+store.dispatch(fetchAssetList());
 store.dispatch(fetchTrendingAssets());
 store.dispatch(fetchSelectedAssets(ids));
 
-const renderApp = () => render(<React.StrictMode>
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>
-</React.StrictMode>,
+const renderApp = () => render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>,
   document.getElementById('root')
 )
 

@@ -9,11 +9,9 @@ const TrendingTable = props => {
   const ids = selected.data.map(({ id }) => id);
   return (
     <div>
-      {
-        (selected.status === 'succeeded') && (
-          <AssetTable ids={ids} />
-        )
-      }
+      {(selected.status === 'succeeded') && (
+        <AssetTable ids={ids} />
+      )}
     </div>
   )
 }

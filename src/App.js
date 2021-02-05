@@ -1,6 +1,7 @@
 import styled from 'styled-components'
-import { Switch, Route, NavLink } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import routes from './app.routes'
+import { Navigation } from './components'
 import { ReactComponent as Btc } from './assets/btc.svg'
 import { ReactComponent as Xlm } from './assets/xlm.svg'
 import { ReactComponent as Eth } from './assets/eth.svg'
@@ -9,12 +10,7 @@ function App({ className }) {
   return (
     <div className={className}>
       <header>
-        <nav className="nav">
-          <div className="links">
-            <NavLink to="/trending">Trending</NavLink>
-            <NavLink to="/selected">Selected</NavLink>
-          </div>
-        </nav>
+        <Navigation />
         <div className="donations">
           <h2>Donations</h2>
           <div>
@@ -42,7 +38,11 @@ export default styled(App)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  header {
+    width: 100%;
+  }
   .donations {
+    margin-top: 64px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -75,37 +75,6 @@ export default styled(App)`
     .qr {
       width: 100px;
       mix-blend-mode: soft-light;
-    }
-  }
-  .nav {
-    box-sizing: border-box;
-    width: 100%;
-    max-width: 968px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 12px 32px;
-    align-items: center;
-    @media (max-width: 420px) {
-      justify-content: center;
-    }
-    a {
-      box-sizing: padding-box;
-      cursor: pointer;
-      border: none;
-      outline: none;
-      font-size: 16px;
-      width: 100px;
-      height: 50px;
-      background-color: transparent;
-      color: steelblue;
-      mix-blend-mode: difference;
-      font-weight: bold;
-      &:hover {
-        text-decoration: underline;
-        filter: brightness(120%);
-        transition: all ease-in-out 100ms;
-      }
     }
   }
 `;
