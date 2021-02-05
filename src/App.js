@@ -27,4 +27,7 @@ export default styled(App)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  header {
+    width: 100%;
+  }
 `;
