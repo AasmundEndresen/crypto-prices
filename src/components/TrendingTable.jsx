@@ -1,33 +1,25 @@
 import React from 'react'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { withPrice } from '../context/priceContext'
-import CoinCard from './CoinCard';
+import { useSelector } from 'react-redux'
+import { getTrending } from '../features/assets/asset.slice'
+import AssetTable from './AssetTable'
 
-const StyledContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 12px;
-  justify-content: center;
-  max-width: 968px;
-`;
-
-function MainTable({ priceContext }) {
-  const { trending, btc } = priceContext;
+const TrendingTable = props => {
+  const trending = useSelector(getTrending);
+  const ids = trending.data.map(({ id }) => id);
   return (
-    <StyledContainer>
-      <CoinCard el={btc} btc={btc} />
-      {trending.map((el, i) => (
-        <CoinCard key={i} el={el} btc={btc} />
-      ))}
-    </StyledContainer>
+    <div>
+      {
+        (trending.status === 'succeeded') && (
+          <AssetTable ids={ids} />
+        )
+      }
+    </div>
   )
 }
 
-MainTable.propTypes = {
-  priceContext: PropTypes.object.isRequired,
+TrendingTable.propTypes = {
+
 }
 
-export default withPrice(MainTable);
-
+export default TrendingTable
