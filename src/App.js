@@ -10,8 +10,8 @@ function App({ className }) {
     <div className={className}>
       <header>
         <Navigation />
-        <Donations />
       </header>
+      <Donations />
       <Switch>
         {routes.map((r, i) => (<Route path={r.path} component={r.component} key={i} />))}
       </Switch>
@@ -29,5 +29,9 @@ export default styled(App)`
   align-items: center;
   header {
     width: 100%;
+    padding: 24px;
+    position: sticky;
+    z-index: 100;
+    top: 0;
   }
 `;

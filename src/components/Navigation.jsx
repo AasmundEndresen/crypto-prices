@@ -63,7 +63,7 @@ export default styled(Navigation)`
     font-size: 16px;
     width: 200px;
     height: 32px;
-    background-color: transparent;
+    background-color: #beb7d6;
     text-decoration: none;
     color: steelblue;
     font-weight: bold;
