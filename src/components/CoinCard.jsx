@@ -1,15 +1,27 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
+import { removeFromSelected } from '../features/assets/asset.slice';
 
 const numberFormat = /\B(?=(\d{3})+(?!\d))/g;
 
 function CoinCard({ el, compare, className }) {
+  const dispatch = useDispatch();
   const getPriceAtBTCmcap = (el) => compare.market_cap / el.market_cap * el.current_price;
   const get1MamtAtBTCmcap = (el) => 1_000_000 / getPriceAtBTCmcap(el);
   const formatNum = (num) => num.toFixed(2).toString().replace(numberFormat, ",");
+  const handleDelete = e => {
+    e.stopPropagation();
+    dispatch(removeFromSelected(el.id));
+  }
   return (
     <div className={className}>
+      {
+        el.removeable && (
+          <button className="delete-btn" onClick={e => handleDelete(e)}>✘</button>
+        )
+      }
       <div className="data">
         <h1>{el.name}</h1>
         <span className="current">{formatNum(el.current_price)}</span>
@@ -42,7 +54,7 @@ export default styled(CoinCard)`
   background-color: whitesmoke;
   border-radius: 8px;
   margin: 12px;
-  padding: 12px;
+  padding: 16px;
   margin-bottom: 16px;
   overflow: hidden;
   box-shadow:
