@@ -1,3 +1,5 @@
+export const api = 'https://api.coingecko.com/api/v3';
+
 export const ids = `
 0x,
 aave,
@@ -5,7 +7,6 @@ aion,
 algorand,
 appcoins,
 basic-attention-token,
-bitcoin,
 beam,
 cardano,
 chainlink,

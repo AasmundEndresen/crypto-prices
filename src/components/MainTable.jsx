@@ -7,19 +7,19 @@ import CoinCard from './CoinCard';
 const StyledContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  margin: auto;
   padding: 12px;
   justify-content: center;
   max-width: 968px;
 `;
 
 function MainTable({ priceContext }) {
-  const { trending, btc } = priceContext;
+  const { selected, btc } = priceContext;
   return (
     <StyledContainer>
       <CoinCard el={btc} btc={btc} />
-      {trending.map((el, i) => (
-        <CoinCard key={i} el={el} btc={btc} />
+      {selected.map((el, i) => (
+        <CoinCard key={i} el={el} btc={btc} selection={true} />
       ))}
     </StyledContainer>
   )
