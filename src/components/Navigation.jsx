@@ -21,6 +21,7 @@ const Navigation = ({ className }) => {
   return (
     <nav className={`${className} ${burger ? 'burger' : ''} ${open ? 'open' : ''}`} onClick={e => handleClick(e)}>
       <div className="pages">
+        <NavLink exact to="/" className="nav-link">Home</NavLink>
         {routes.map((r, i) => <NavLink to={r.path} key={i} className="nav-link">{r.title}</NavLink>)}
       </div>
       <CoinSelect className="search" ref={navRef} />
@@ -67,8 +68,8 @@ export default styled(Navigation)`
     text-decoration: none;
     color: steelblue;
     font-weight: bold;
-    border-radius: 2px;
-    &:hover {
+    border-radius: 4px;
+    &:hover, &.active {
       filter: hue-rotate(-25deg);
       box-shadow:
         -1px -1px 1px 1px inset rgba(255,255,255,0.75),
